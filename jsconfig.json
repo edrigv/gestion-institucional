@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["resources/js/*"]
+    }
+  },
+  "include": [
+    "resources/js/**/*",
+    "vite.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "vendor",
+    "public/build",
+    "storage"
+  ]
+}

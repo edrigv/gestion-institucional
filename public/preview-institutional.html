@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Previa Institucional · Cristo Rey</title>
+    <link rel="icon" type="image/png" href="images/escudo-cristo-rey.png">
+    <link rel="stylesheet" href="css/institutional.css">
+    <style>
+        .preview-switcher {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+            display: flex;
+            gap: 8px;
+            background: rgba(0, 34, 102, 0.92);
+            padding: 8px;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            border: 1px solid var(--gold);
+        }
+        .preview-btn {
+            background: rgba(255,255,255,0.15) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            padding: 6px 12px !important;
+            font-size: 12px !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+        }
+        .preview-btn.active {
+            background: var(--gold) !important;
+            color: #1a2238 !important;
+            font-weight: 800 !important;
+        }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+    </style>
+</head>
+<body>
+
+<div class="preview-switcher">
+    <button class="preview-btn active" onclick="showView('dashboard')">Panel Dashboard</button>
+    <button class="preview-btn" onclick="showView('admin')">Panel Administrador</button>
+    <button class="preview-btn" onclick="showView('login')">Pantalla Login</button>
+    <button class="preview-btn" style="background:#f59e0b!important;color:#1a2238!important" onclick="toggleTheme()"><span class="theme-toggle-icon">🌙</span> <span class="theme-toggle-label">Modo oscuro</span></button>
+</div>
+<script src="js/theme.js"></script>
+
+<!-- VISTA 1: DASHBOARD -->
+<div id="view-dashboard" class="view-section active">
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar-header brand">
+                <div class="brand-row">
+                    <img src="images/escudo-cristo-rey.png" class="brand-mark-img" alt="Escudo Cristo Rey">
+                    <div class="brand-info">
+                        <div class="brand-name">Cristo Rey</div>
+                        <div class="brand-sub">U.E. Particular</div>
+                        <div class="brand-inst">Gestión Institucional</div>
+                    </div>
+                </div>
+                <div class="brand-line"></div>
+            </div>
+
+            <div class="sidebar-body">
+                <div class="nav-label">Navegación</div>
+                <nav class="nav">
+                    <a href="#dashboard" class="active">
+                        <span class="nav-icon">▦</span><span>Panel principal</span>
+                    </a>
+                    <a href="#requerimientos">
+                        <span class="nav-icon">▤</span><span>Requerimientos</span>
+                        <span class="nav-badge gold">3</span>
+                    </a>
+                    <a href="#tipos">
+                        <span class="nav-icon">◇</span><span>Tipos requerimiento</span>
+                    </a>
+                    <a href="#mensajes">
+                        <span class="nav-icon">✉</span><span>Mensajes</span>
+                        <span class="nav-badge sky">2</span>
+                    </a>
+                    <a href="#reservas">
+                        <span class="nav-icon">▣</span><span>Mis reservas</span>
+                    </a>
+                </nav>
+
+                <div class="nav-label">Acciones</div>
+                <nav class="nav">
+                    <a href="#nuevo-req">
+                        <span class="nav-icon">＋</span><span>Nuevo requerimiento</span>
+                    </a>
+                    <a href="#nuevo-msj">
+                        <span class="nav-icon">＋</span><span>Nuevo mensaje</span>
+                    </a>
+                    <a href="#horario">
+                        <span class="nav-icon">▦</span><span>Horario y reservas</span>
+                    </a>
+                    <a href="#gestion">
+                        <span class="nav-icon">✓</span><span>Gestionar reservas</span>
+                        <span class="nav-badge red">2</span>
+                    </a>
+                </nav>
+
+                <div class="nav-label">Administración</div>
+                <nav class="nav">
+                    <a href="#admin">
+                        <span class="nav-icon">⚙</span><span>Panel de Administración</span>
+                    </a>
+                    <a href="#espacios">
+                        <span class="nav-icon">⌂</span><span>Espacios</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-account">
+                    <div class="sidebar-user-name">Lic. Carlos Mendoza</div>
+                    <div class="sidebar-user-role">ADMINISTRADOR INSTITUCIONAL</div>
+                    <button type="button" class="sidebar-logout">Cerrar sesión</button>
+                </div>
+                <div class="sidebar-footer">
+                    <em>"Formando hombres y mujeres para los demás"</em>
+                    <span>U.E.P. Cristo Rey · Portoviejo</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            <header class="topbar">
+                <div class="topbar-brand-indicator">
+                    <div class="topbar-title">Panel Principal</div>
+                </div>
+                <div class="topbar-right">
+                    <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" title="Alternar modo claro / oscuro" aria-label="Alternar tema">
+                        <span class="theme-toggle-icon">🌙</span>
+                    </button>
+                    <span class="user-pill">U.E. Particular Cristo Rey</span>
+                </div>
+            </header>
+            <div class="page-content">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Gestión Institucional</h1>
+                        <p class="page-subtitle">Resumen general de requerimientos, trámites internos y reservas de espacios.</p>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-gold">＋ Nuevo requerimiento</button>
+                        <button class="btn btn-primary">▦ Horario y reservas</button>
+                    </div>
+                </div>
+
+                <div class="card-grid">
+                    <div class="stat-card"><div class="stat-value">24</div><div class="stat-label">Total requerimientos</div></div>
+                    <div class="stat-card green"><div class="stat-value">8</div><div class="stat-label">En proceso</div></div>
+                    <div class="stat-card orange"><div class="stat-value">5</div><div class="stat-label">Pendientes aprobación</div></div>
+                    <div class="stat-card gold"><div class="stat-value">3</div><div class="stat-label">Pendientes de firma</div></div>
+                    <div class="stat-card gray"><div class="stat-value">8</div><div class="stat-label">Cerrados / Atendidos</div></div>
+                </div>
+
+                <section class="panel" style="padding:0!important;overflow:hidden">
+                    <div style="padding:20px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffffff">
+                        <div>
+                            <h2 style="margin:0">Últimos Requerimientos</h2>
+                            <div class="muted" style="font-size:12.5px;margin-top:4px">Actividad reciente registrada en el sistema institucional</div>
+                        </div>
+                        <button class="btn">Consultar listado completo</button>
+                    </div>
+                    <div class="table-wrap" style="border:0;border-radius:0;box-shadow:none">
+                        <table>
+                            <thead>
+                                <tr><th>Número</th><th>Asunto</th><th>Tipo</th><th>Prioridad</th><th>Estado</th><th>Fecha</th><th></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="req-number">REQ-2026-0042</td>
+                                    <td class="truncate">Mantenimiento de proyectores en bloque de Bachillerato</td>
+                                    <td>Soporte Técnico</td>
+                                    <td><span class="priority priority-ALTA">ALTA</span></td>
+                                    <td><span class="badge estado-EN_PROCESO">EN PROCESO</span></td>
+                                    <td>20/08/2026 14:30</td>
+                                    <td><button class="btn">Ver</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="req-number">REQ-2026-0041</td>
+                                    <td class="truncate">Solicitud de material para semana Ignaciana</td>
+                                    <td>Pastoral</td>
+                                    <td><span class="priority priority-MEDIA">MEDIA</span></td>
+                                    <td><span class="badge estado-APROBADO">APROBADO</span></td>
+                                    <td>20/08/2026 11:15</td>
+                                    <td><button class="btn">Ver</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="req-number">REQ-2026-0040</td>
+                                    <td class="truncate">Certificado de matrícula para trámite consular</td>
+                                    <td>Secretaría General</td>
+                                    <td><span class="priority priority-MEDIA">MEDIA</span></td>
+                                    <td><span class="badge estado-PENDIENTE_FIRMA">PENDIENTE FIRMA</span></td>
+                                    <td>19/08/2026 16:45</td>
+                                    <td><button class="btn">Ver</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- VISTA 2: LOGIN -->
+<div id="view-login" class="view-section">
+    <div class="login-page">
+        <div class="login-shell">
+            <section class="login-card">
+                <div class="login-brand">
+                    <div class="login-logo-container">
+                        <img src="images/logo-cristo-rey.png" class="login-logo-img" alt="Unidad Educativa Particular Cristo Rey">
+                    </div>
+                    <div>
+                        <h1>Gestión Institucional</h1>
+                        <p>Plataforma de Requerimientos, Mensajería y Espacios</p>
+                    </div>
+                </div>
+
+                <div class="login-copy">
+                    <h2>Acceso al Sistema</h2>
+                    <p>Ingresa con tus credenciales institucionales.</p>
+                </div>
+
+                <form onsubmit="event.preventDefault()">
+                    <div class="form-group">
+                        <label for="p-codigo">Código de Usuario</label>
+                        <input id="p-codigo" type="text" value="ADMIN" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="p-clave">Contraseña</label>
+                        <input id="p-clave" type="password" value="••••••••" required>
+                    </div>
+                    <button class="btn-primary login-submit" type="submit">Ingresar a la Plataforma</button>
+                </form>
+
+                <div class="login-help">
+                    <em>"Formando hombres y mujeres para los demás"</em>
+                    Unidad Educativa Particular Cristo Rey · Portoviejo, Manabí, Ecuador
+                </div>
+            </section>
+</div>
+
+<!-- VISTA 3: ADMIN HUB -->
+<div id="view-admin" class="view-section">
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar-header brand">
+                <div class="brand-row">
+                    <img src="images/escudo-cristo-rey.png" class="brand-mark-img" alt="Escudo Cristo Rey">
+                    <div class="brand-info">
+                        <div class="brand-name">Cristo Rey</div>
+                        <div class="brand-sub">U.E. Particular</div>
+                        <div class="brand-inst">Gestión Institucional</div>
+                    </div>
+                </div>
+                <div class="brand-line"></div>
+            </div>
+
+            <div class="sidebar-body">
+                <div class="nav-label">Navegación</div>
+                <nav class="nav">
+                    <a href="#dashboard"><span class="nav-icon">▦</span><span>Panel principal</span></a>
+                    <a href="#requerimientos"><span class="nav-icon">▤</span><span>Requerimientos</span><span class="nav-badge gold">3</span></a>
+                    <a href="#tipos"><span class="nav-icon">◇</span><span>Tipos requerimiento</span></a>
+                    <a href="#mensajes"><span class="nav-icon">✉</span><span>Mensajes</span><span class="nav-badge sky">2</span></a>
+                    <a href="#reservas"><span class="nav-icon">▣</span><span>Mis reservas</span></a>
+                </nav>
+
+                <div class="nav-label">Acciones</div>
+                <nav class="nav">
+                    <a href="#nuevo-req"><span class="nav-icon">＋</span><span>Nuevo requerimiento</span></a>
+                    <a href="#nuevo-msj"><span class="nav-icon">＋</span><span>Nuevo mensaje</span></a>
+                    <a href="#horario"><span class="nav-icon">▦</span><span>Horario y reservas</span></a>
+                    <a href="#gestion"><span class="nav-icon">✓</span><span>Gestionar reservas</span><span class="nav-badge red">2</span></a>
+                </nav>
+
+                <div class="nav-label">Administración</div>
+                <nav class="nav">
+                    <a href="#admin" class="active"><span class="nav-icon">⚙</span><span>Panel de Administración</span></a>
+                    <a href="#espacios"><span class="nav-icon">⌂</span><span>Espacios</span></a>
+                </nav>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-account">
+                    <div class="sidebar-user-name">Lic. Carlos Mendoza</div>
+                    <div class="sidebar-user-role">ADMINISTRADOR INSTITUCIONAL</div>
+                    <button type="button" class="sidebar-logout">Cerrar sesión</button>
+                </div>
+                <div class="sidebar-footer">
+                    <em>"Formando hombres y mujeres para los demás"</em>
+                    <span>U.E.P. Cristo Rey · Portoviejo</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            <header class="topbar">
+                <div class="topbar-title">Centro de Administración y Configuración</div>
+                <div class="topbar-right">
+                    <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" title="Alternar modo claro / oscuro" aria-label="Alternar tema">
+                        <span class="theme-toggle-icon">🌙</span>
+                    </button>
+                    <span class="user-pill">Modo Administrador</span>
+                </div>
+            </header>
+            <div class="page-content">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Panel de Administración</h1>
+                        <p class="page-subtitle">Gestión centralizada de espacios, trámites del catálogo, departamentos y personal de la institución.</p>
+                    </div>
+                </div>
+
+                <div class="card-grid">
+                    <div class="stat-card"><div class="stat-value">6</div><div class="stat-label">Espacios Reservables</div></div>
+                    <div class="stat-card gold"><div class="stat-value">12</div><div class="stat-label">Tipos de Trámite</div></div>
+                    <div class="stat-card green"><div class="stat-value">8</div><div class="stat-label">Departamentos Plantel</div></div>
+                    <div class="stat-card gray"><div class="stat-value">45</div><div class="stat-label">Personal Registrado</div></div>
+                </div>
+
+                <div style="display:flex;gap:6px;background:#fff;padding:6px;border-radius:12px;border:1px solid var(--line);margin-bottom:20px;">
+                    <button class="btn btn-primary" style="padding:9px 16px!important">🏢 Espacios Reservables</button>
+                    <button class="btn" style="padding:9px 16px!important">📋 Catálogo de Requerimientos</button>
+                    <button class="btn" style="padding:9px 16px!important">🏛 Departamentos Institucionales</button>
+                    <button class="btn" style="padding:9px 16px!important">👥 Directorio de Personal</button>
+                </div>
+
+                <section class="panel" style="padding:0!important;overflow:hidden">
+                    <div style="padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:#fff">
+                        <div>
+                            <h2 style="margin:0">Espacios Institucionales</h2>
+                            <div class="muted" style="font-size:12.5px;margin-top:2px">Lugares para eventos, clases especiales y reuniones</div>
+                        </div>
+                        <button class="btn btn-gold">＋ Nuevo espacio</button>
+                    </div>
+                    <div class="table-wrap" style="border:0;border-radius:0;box-shadow:none">
+                        <table>
+                            <thead>
+                                <tr><th>Espacio</th><th>Ubicación</th><th>Capacidad</th><th>Encargado</th><th>Estado</th><th></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Auditorio San Ignacio</strong></td><td>Bloque Central - 2do Piso</td><td>180 personas</td><td>Lic. Carlos Mendoza</td><td><span class="badge estado-APROBADO">ACTIVO</span></td><td><button class="btn">Editar</button></td></tr>
+                                <tr><td><strong>Coliseo Deportivo</strong></td><td>Área Recreativa</td><td>600 personas</td><td>Lic. Ana Vera</td><td><span class="badge estado-APROBADO">ACTIVO</span></td><td><button class="btn">Editar</button></td></tr>
+                                <tr><td><strong>Sala de Reuniones Rectorado</strong></td><td>Edificio Administrativo</td><td>24 personas</td><td>Lic. María Torres</td><td><span class="badge estado-APROBADO">ACTIVO</span></td><td><button class="btn">Editar</button></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>
+function showView(viewId) {
+    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.preview-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('view-' + viewId).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
